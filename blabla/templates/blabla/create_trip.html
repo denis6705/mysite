@@ -1,4 +1,5 @@
 {% extends 'blabla/base.html' %}
+{% load bootstrap3 %}
 {% block title %}Создание поездки{% endblock %}
 
 {% block content %}
@@ -6,11 +7,14 @@
 {% if user.is_authenticated %}
   <h2>Создание поездки</h2>
   <form method="post">
-    {% csrf_token %}
-    {{ trip_form.as_p }}
-    <button type="submit" class="btn">
-      Создать
+   {% csrf_token %}
+  {% bootstrap_form trip_form %}
+  {% buttons %}
+    <button type="submit" class="btn btn-primary">
+      {% bootstrap_icon "star" %} Submit
     </button>
+  {% endbuttons %}
+</form>
 {% else %}
   <h2>Login</h2>
 <form method="post">

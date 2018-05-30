@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import TripForm
+from .forms import RawTripForm
 from .models import Trip
 
 def index(request):
@@ -17,7 +17,7 @@ def detail(request,trip_id):
 
 def create_trip(request):
   if request.method == 'GET':
-    trip_form = TripForm()
+    trip_form = RawTripForm()
     return render(request, 'blabla/create_trip.html', {'trip_form':trip_form})
   else:
     trip_form = TripForm(request)

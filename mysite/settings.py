@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'blabla.apps.BlablaConfig',
     'django.contrib.admin',
     'django.contrib.auth',
+    'bootstrap3',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
