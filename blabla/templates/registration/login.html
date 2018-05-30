@@ -1,4 +1,5 @@
 {% extends 'blabla/base.html' %}
+{% load bootstrap3 %}
 {% block title %}Login{% endblock %}
 
 {% block content %}
@@ -8,12 +9,15 @@
 {% else %}
   <h2>Login</h2>
 <form method="post">
-  {% csrf_token %}
-    <div class="form-group form.horizontal">
-  {{ form.as_p }}
-  <button type="submit" class="btn btn-success">Login</button>
-  </div>
+      {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+        <button type="submit" class="btn btn-primary">
+             Login
+        </button>
+    {% endbuttons %}
 </form>
+
 {% endif %}
 
 {% endblock %}

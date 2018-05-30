@@ -6,15 +6,24 @@
 
 {% if user.is_authenticated %}
   <h2>Создание поездки</h2>
-  <form method="post">
+<div class="row">
+  <div class='col-sm-6'>
+<form method="post">
    {% csrf_token %}
   {% bootstrap_form trip_form %}
   {% buttons %}
     <button type="submit" class="btn btn-primary">
-      {% bootstrap_icon "star" %} Submit
+      Submit
     </button>
   {% endbuttons %}
 </form>
+  </div>
+</div>
+<script type="text/javascript">
+            $(function () {
+                $('#datetimepicker12').datetimepicker();
+            });
+</script>
 {% else %}
   <h2>Login</h2>
 <form method="post">
@@ -22,7 +31,6 @@
     <div class="form-group form.horizontal">
   {{ form.as_p }}
   <button type="submit" class="btn btn-success">Login</button>
-  </div>
 </form>
 {% endif %}
 
