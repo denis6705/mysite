@@ -1,0 +1,25 @@
+{% extends 'blabla/base.html' %}
+{% block title %}Создание поездки{% endblock %}
+
+{% block content %}
+
+{% if user.is_authenticated %}
+  <h2>Создание поездки</h2>
+  <form method="post">
+    {% csrf_token %}
+    {{ trip_form.as_p }}
+    <button type="submit" class="btn">
+      Создать
+    </button>
+{% else %}
+  <h2>Login</h2>
+<form method="post">
+  {% csrf_token %}
+    <div class="form-group form.horizontal">
+  {{ form.as_p }}
+  <button type="submit" class="btn btn-success">Login</button>
+  </div>
+</form>
+{% endif %}
+
+{% endblock %}

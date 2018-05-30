@@ -6,7 +6,7 @@
 {% block content %}
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
-<!--<table class="table">
+<table class="table">
   <thead>
     <tr>
       <th scope="col">#</th>
@@ -22,15 +22,16 @@
     <td> {{ trip.trip_from }}</td>
     <td> {{ trip.trip_to }}</td>
     <td> {{ trip.free_seats }}</td>
+    <td><a href='detail/{{ trip.pk }}'>Подробно</a></td>
+     <td> <button class="btn" onclick="location.href='/detail/{{ trip.pk }}'">Подробно</td>
   </tr>
   {% endfor %}
   </tbody>
-</table> -->
-<div class="container">
- {{ form.as_p }}
-</div>
+</table>
 
-
+  <p>
+    <button class="btn" onclick="location.href='create/'">Создать поездку</button>
+</p>
   <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
   <p>You are not logged in</p>

@@ -8,10 +8,20 @@ def index(request):
   return render(request,'blabla/index.html')
 
 def home(request):
-  #trips = Trip.objects.all()
-  trip = Trip.objects.get(pk=1)
-  trip_form = TripForm(instance=trip)
-  return render(request, 'blabla/home.html',{'form':trip_form})
+  trips = Trip.objects.all()
+  return render(request, 'blabla/home.html',{'trips':trips})
+
+def detail(request,trip_id):
+  trip = Trip.objects.get(pk=trip_id)
+  return render(request, 'blabla/detail.html',{'trip':trip})
+
+def create_trip(request):
+  if request.method == 'GET':
+    trip_form = TripForm()
+    return render(request, 'blabla/create_trip.html', {'trip_form':trip_form})
+  else:
+    trip_form = TripForm(request)
+
 
 def login(request):
   username = request.POST['username']
