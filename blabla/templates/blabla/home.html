@@ -6,6 +6,31 @@
 {% block content %}
 {% if user.is_authenticated %}
   Hi {{ user.username }}!
+<!--<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">#</th>
+      <th scope="col">Из</th>
+      <th scope="col">В</th>
+      <th scope="col">Свободные места</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for trip in trips %}
+  <tr>
+    <th scope="row"> {{ trip.pk }}</th>
+    <td> {{ trip.trip_from }}</td>
+    <td> {{ trip.trip_to }}</td>
+    <td> {{ trip.free_seats }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table> -->
+<div class="container">
+ {{ form.as_p }}
+</div>
+
+
   <p><a href="{% url 'logout' %}">logout</a></p>
 {% else %}
   <p>You are not logged in</p>
