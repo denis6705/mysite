@@ -1,5 +1,6 @@
 <!-- templates/home.html-->
 {% extends 'base.html' %}
+{% load bootstrap3 %}
 
 {% block title %}Home{% endblock %}
 
@@ -23,7 +24,9 @@
     <td> {{ trip.trip_to }}</td>
     <td> {{ trip.free_seats }}</td>
     <td><a href='detail/{{ trip.pk }}'>Подробно</a></td>
-     <td> <button class="btn" onclick="location.href='/detail/{{ trip.pk }}'">Подробно</td>
+    {% if user.id == trip.creator %}
+    <td><a href='edit/{{ trip.pk }}'>Редактировать</a></td>
+    {% endif %}
   </tr>
   {% endfor %}
   </tbody>

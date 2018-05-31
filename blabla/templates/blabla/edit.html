@@ -1,18 +1,18 @@
 {% extends 'blabla/base.html' %}
 {% load bootstrap3 %}
-{% block title %}Создание поездки{% endblock %}
+{% block title %}Редактирование поездки{% endblock %}
 
 {% block content %}
 
 {% if user.is_authenticated %}
 <div class="row">
 <div class='col-sm-6'>
-<h2>Создание поездки</h2>
+<h2>Редактирование поездки</h2>
 <form method="post">
   {% csrf_token %}
   {% bootstrap_form trip_form %}
   {% buttons %}
-    <button type="Создать" class="btn btn-primary">
+    <button type="Сохранить" class="btn btn-primary">
       Submit
     </button>
   {% endbuttons %}
@@ -30,7 +30,7 @@
   {% csrf_token %}
     <div class="form-group form.horizontal">
   {{ form.as_p }}
-  <button type="submit" class="btn btn-success">Login</button>
+  <button type="Сохранить" class="btn btn-success">Login</button>
 </form>
 {% endif %}
 
