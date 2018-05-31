@@ -33,7 +33,7 @@ def edit_trip(request, trip_id):
     trip_form = TripForm(instance=trip)
     return render(request, 'blabla/edit.html', {'trip_form':trip_form})
   elif requst.method == 'POST':
-    pass
+    model
 
 def login(request):
   username = request.POST['username']

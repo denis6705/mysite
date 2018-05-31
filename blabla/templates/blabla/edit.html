@@ -4,7 +4,6 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
 <div class="row">
 <div class='col-sm-6'>
 <h2>Редактирование поездки</h2>
@@ -12,8 +11,8 @@
   {% csrf_token %}
   {% bootstrap_form trip_form %}
   {% buttons %}
-    <button type="Сохранить" class="btn btn-primary">
-      Submit
+    <button type="submit" class="btn btn-primary">
+      Сохранить
     </button>
   {% endbuttons %}
 </form>
@@ -24,14 +23,6 @@
                 $('#datetimepicker12').datetimepicker({locale:'ru'});
             });
 </script>
-{% else %}
-  <h2>Login</h2>
-<form method="post">
-  {% csrf_token %}
-    <div class="form-group form.horizontal">
-  {{ form.as_p }}
-  <button type="Сохранить" class="btn btn-success">Login</button>
-</form>
-{% endif %}
 
 {% endblock %}
+

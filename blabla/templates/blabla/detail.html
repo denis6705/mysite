@@ -3,17 +3,7 @@
 
 {% block content %}
 
-{% if user.is_authenticated %}
  {{ trip }}
-{% else %}
-  <h2>Login</h2>
-<form method="post">
-  {% csrf_token %}
-    <div class="form-group form.horizontal">
-  {{ form.as_p }}
-  <button type="submit" class="btn btn-success">Login</button>
-  </div>
-</form>
-{% endif %}
+
 
 {% endblock %}
