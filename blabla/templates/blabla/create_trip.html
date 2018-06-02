@@ -3,9 +3,7 @@
 {% block title %}Создание поездки{% endblock %}
 
 {% block content %}
-
-{% if user.is_authenticated %}
-
+<div class="row">
 <div class='col-sm-6'>
 <h2>Создание поездки</h2>
 <form method="post">
@@ -18,20 +16,12 @@
   {% endbuttons %}
 </form>
 </div>
+</div>
 
 <script type="text/javascript">
             $(function () {
                 $('#datetimepicker12').datetimepicker({locale:'ru'});
             });
 </script>
-{% else %}
-  <h2>Login</h2>
-<form method="post">
-  {% csrf_token %}
-    <div class="form-group form.horizontal">
-  {{ form.as_p }}
-  <button type="submit" class="btn btn-success">Login</button>
-</form>
-{% endif %}
 
 {% endblock %}
