@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import RawTripForm, TripForm
+from .forms import  TripForm
 from .models import Trip
 def index(request):
 
@@ -25,23 +25,23 @@ def create_trip(request):
       model = trip_form.instance
       model.creator = request.user.id
       model.save()
-    return render(request, 'blabla/create_trip.html', {'trip_form':TripForm()})
+    return redirect('home')
 
 def edit_trip(request, trip_id):
   if request.method == 'GET':
     trip = Trip.objects.get(pk=trip_id)
     trip_form = TripForm(instance=trip)
     return render(request, 'blabla/edit.html', {'trip_form':trip_form})
-  elif requst.method == 'POST':
-    model
+  elif request.method == 'POST':
+    new_trip_form = TripForm(request.POST)
+    if new_trip_form.is_valid():
+      model = new_trip_form.instance
+      model.pk = trip_id
+      model.creator = request.user.id
+      model.save()
+    return redirect('home')
 
-def login(request):
-  username = request.POST['username']
-  password = request.POST['password']
-  user = authenticate(request, username=username, password=password)
-  if user is not None:
-    login(request, user)
-  return redirect('')
+
 
 
 
