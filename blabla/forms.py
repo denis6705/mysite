@@ -14,4 +14,16 @@ from django.contrib.admin import widgets
 #    fields = ['trip_from', 'trip_to', 'datetime', 'free_seats', 'car']
 #    widgets = {'datetime': forms.DateTimeInput(attrs={'id':'datetimepicker12'})}
 
-TripForm = modelform_factory(Trip, exclude=('creator','users'),  widgets = {'datetime': forms.DateTimeInput(attrs={'id':'datetimepicker12'})})
+TripForm = modelform_factory(Trip, exclude=('creator','users'),
+                             widgets = {'datetime': forms.DateTimeInput(attrs={'id':'datetimepicker12',
+                                                                              'data-target':'#datetimepicker12',
+                                                                               #'data-target-input':'nearest',
+                                                                               'data-toggle':'datetimepicker'
+                                                                              })})
+DetailForm = modelform_factory(Trip, exclude=('creator','users'),
+                             widgets = {'datetime':  forms.DateTimeInput(attrs={'type':'button'}),
+                                        'free_seats': forms.DateTimeInput(attrs={'type':'button'}),
+                                        'trip_from': forms.DateTimeInput(attrs={'type':'button'}),
+                                        'trip_to': forms.DateTimeInput(attrs={'type':'button'}),
+                                        'car': forms.DateTimeInput(attrs={'type':'button'}),
+                                       })

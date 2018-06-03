@@ -1,40 +1,72 @@
-{% load bootstrap3 %}
 {% load static %}
+{% load bootstrap3 %}
 <!DOCTYPE html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  {% bootstrap_css %}
-  <link rel="stylesheet" href="{% static 'blabla/css/font-awesome.min.css' %}">
-  <script src="{% static 'blabla/js/jquery-3.3.1.min.js' %}"></script>
-  <script src="{% static 'blabla/js/moment-with-locales.js' %}"></script>
-  <link href="{% static 'blabla/css/prettify-1.0.css' %}" rel="stylesheet">
-  <link href="{% static 'blabla/css/bootstrap-datetimepicker.css' %}" rel="stylesheet">
-  <script src="{% static 'blabla/js/bootstrap-datetimepicker.min.js' %}"></script>
-   <script src="{% static 'blabla/js/popper.min.js' %}"></script>
+{% block html %}
+<html lang="ru">
+
+  {% block head %}
+  <head>
+    <meta charset="utf-8">
+    <title>{% block title %}Django Auth Tutorial{% endblock %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="{% static 'blabla/css/font-awesome.min.css' %}">
+    <script src="{% static 'blabla/js/jquery-3.3.1.min.js' %}"></script>
+    <script src="{% static 'blabla/js/moment-with-locales.js' %}"></script>
+    <link href="{% static 'blabla/css/prettify-1.0.css' %}" rel="stylesheet">
+    <link href="{% static 'blabla/css/bootstrap-datetimepicker.css' %}" rel="stylesheet">
+    <script src="{% static 'blabla/js/bootstrap-datetimepicker.min.js' %}"></script>
+    <script src="{% static 'blabla/js/popper.min.js' %}"></script>
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    {% bootstrap_messages %}
+    <script src="{% static 'blabla/js/bootstrap-confirmation.min.js' %}"></script>
+  </head>
+  {% endblock %}
+  {% block body %}
+  <body>
+   {% if user.is_authenticated %}
+    {% block nav %}
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+
+            {% block nav_content %}
+                {% block navbar_brand %}
+                    <a class="navbar-brand" href="{% url 'home' %}">АРТЕК ПОЕЗДКИ</a>
+                {% endblock %}
 
 
+                {% block navbar_collapse %}
+                <div class="collapse navbar-collapse" id="navbar">
 
-  {% bootstrap_javascript %}
-  {% bootstrap_messages %}
-  <script src="{% static 'blabla/js/bootstrap-confirmation.min.js' %}"></script>
+                    {% block navbar_collapse_nav %}{% endblock %}
 
-</head>
-<body>
-  {% if user.is_authenticated %}
-  <div class="container">
-    {% block content %}
-    {% endblock %}
-      <p><button class="btn" onclick='window.location.href = "{% url 'logout' %}"'>Выйти</button>
-      <input class="btn" type="button" onclick="history.back(-2); return false;" value="Назад"/>
- </p>
-  </div>
-  {% else %}
+                </div>
+                {% endblock %}
+
+            {% endblock %}
+
+        </nav>
+        {% endblock %}
+
+        <div class="mt-5"></div>
+
+        {% block navbar_after %}{% endblock %}
+
+        {% block body_content %}
+            <div class="container">
+                {% block content %}{% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block foot %}
+            <footer>
+            </footer>
+          {% endblock %}
+    {% else %}
     <script type="text/javascript">
       window.location.href = "{% url 'login' %}";
   </script>
   {% endif %}
-</body>
+  </body>
+  {% endblock %}
 </html>
+{% endblock %}

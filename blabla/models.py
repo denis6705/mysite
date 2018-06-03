@@ -6,7 +6,7 @@ class Trip(models.Model):
   trip_from = models.CharField("Место отправления:",max_length=30)
   trip_to = models.CharField("Место прибытия:",max_length=30)
   datetime = models.DateTimeField("Время отбытия")
-  free_seats = models.IntegerField("Свободные места:")
+  free_seats = models.PositiveIntegerField("Свободные места:")
   car = models.CharField("Машина:",max_length=30)
   users = models.ManyToManyField(User,blank=True)
 

@@ -2,7 +2,7 @@
 {% extends 'base.html' %}
 {% load bootstrap3 %}
 
-{% block title %}Home{% endblock %}
+{% block title %}Главная{% endblock %}
 
 {% block content %}
 
@@ -24,8 +24,9 @@
     <td> {{ trip.free_seats }}</td>
     <td><a href='detail/{{ trip.pk }}'>Подробно</a></td>
     {% if user.id == trip.creator %}
-    <td><a href='edit/{{ trip.pk }}'>Редактировать</a></td>
+    <td><span class="glyphicon glyphicon-user"></span></td>
     {% endif %}
+
   </tr>
   {% endfor %}
   </tbody>

@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
-from .forms import  TripForm
+from .forms import  TripForm, DetailForm
 from .models import Trip
 def index(request):
 
@@ -12,7 +12,19 @@ def home(request):
 
 def detail(request,trip_id):
   trip = Trip.objects.get(pk=trip_id)
-  return render(request, 'blabla/detail.html',{'trip':trip})
+  if trip.creator == request.user.id:
+    return redirect('edit_trip', trip_id)
+  trip_form = DetailForm(instance=trip)
+  return render(request, 'blabla/detail.html',{'trip_form':trip_form,
+                                               'trip_id':trip_id,
+                                               'trip_creator':trip.creator})
+
+def my_trips(request, trip_id):
+  trips = Trip.objects.all(creator=request.user.id)
+  pass
+
+def my_subscriptions(request):
+  pass
 
 def delete_trip(request, trip_id):
   t = Trip.objects.get(pk=trip_id)
