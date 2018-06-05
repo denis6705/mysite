@@ -31,6 +31,7 @@
             {% block nav_content %}
                 {% block navbar_brand %}
                     <a class="navbar-brand" href="{% url 'home' %}">АРТЕК ПОЕЗДКИ</a>
+                    <p><button class="btn" onclick='window.location.href = "{% url 'logout' %}"'>Выйти</button>
                 {% endblock %}
 
 
