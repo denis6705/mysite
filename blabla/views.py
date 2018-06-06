@@ -9,16 +9,23 @@ def index(request):
 def home(request):
   trips = Trip.objects.all().order_by('datetime')
   return render(request, 'blabla/home.html',{'trips':trips})
-
+#-------------detail---------------------------------------------------------------
 def detail(request,trip_id):
   trip = Trip.objects.get(pk=trip_id)
   if trip.creator == request.user.id:
     return redirect('edit_trip', trip_id)
   trip_form = DetailForm(instance=trip)
+  subscribed = (request.user in list(trip.users.all()))
+  if not subscribed and trip.free_seats > 0:
+      can_subscribe = True
+  else:
+      can_subscribe = False
+
   return render(request, 'blabla/detail.html',{'trip_form':trip_form,
                                                'trip_id':trip_id,
-                                               'trip_creator':trip.creator})
-
+                                               'can_subscribe': can_subscribe,
+                                               'subscribed': subscribed})
+#----------------------------------------------------------------------------------
 def my_trips(request, trip_id):
   trips = Trip.objects.all(creator=request.user.id)
   pass
@@ -31,6 +38,21 @@ def delete_trip(request, trip_id):
   if t.creator == request.user.id:
     t.delete()
   return redirect('home')
+
+def subscribe(request, trip_id):
+    trip = Trip.objects.get(pk=trip_id)
+    trip.users.add(request.user)
+    trip.free_seats -= 1
+    trip.save()
+    redirect('detail',trip_id)
+
+def unsubscribe(request, trip_id):
+    trip = Trip.objects.get(pk=trip_id)
+    trip.users.remove(request.user)
+    trip.free_seats += 1
+    trip.save()
+    redirect('detail', trip_id)
+
 
 def create_trip(request):
   if request.method == 'GET':
@@ -57,8 +79,3 @@ def edit_trip(request, trip_id):
       model.creator = request.user.id
       model.save()
     return redirect('home')
-
-
-
-
-
