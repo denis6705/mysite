@@ -9,10 +9,8 @@
   {% bootstrap_form trip_form %}
 </form>
 {% if user.id == trip_creator %}
-
   <a class="btn btn-large btn-danger" data-toggle="confirmation" data-btn-cancel-label="Отмена" data-title="Точно хотите удалить ?"
    href="{% url 'delete_trip' trip_id %}"  data-btn-ok-label="Удалить" >Удалить</a>
-
 <script type="text/javascript">
   $( document ).ready(function() {
    $('[data-toggle=confirmation]').confirmation();

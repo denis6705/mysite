@@ -25,38 +25,36 @@
   {% block body %}
   <body>
    {% if user.is_authenticated %}
-    {% block nav %}
-        <nav class="navbar fixed-top navbar-expand-lg navbar-dark bg-dark">
+{% block nav %}
+<div class="navbar navbar-inverse navbar-static-top" role="navigation">
+<div class="container">
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">Артек поездки</a>
+  </div>
+  <div class="collapse navbar-collapse">
+    <ul class="nav navbar-nav">
+      <li><a href="{% url 'home' %}">Домой</a></li>
+      <li><a href="#about">Мои поездки</a></li>
+      <li><a href="#about">Мои брони</a></li>
+      <li><a href="{% url 'logout' %}">Выход</a></li>
+    </ul>
+  </div><!--/.nav-collapse -->
+</div>
+</div>
+{% endblock %}
 
-            {% block nav_content %}
-                {% block navbar_brand %}
-                    <a class="navbar-brand" href="{% url 'home' %}">АРТЕК ПОЕЗДКИ</a>
-                    <p><button class="btn" onclick='window.location.href = "{% url 'logout' %}"'>Выйти</button>
-                {% endblock %}
-
-
-                {% block navbar_collapse %}
-                <div class="collapse navbar-collapse" id="navbar">
-
-                    {% block navbar_collapse_nav %}{% endblock %}
-
-                </div>
-                {% endblock %}
-
-            {% endblock %}
-
-        </nav>
-        {% endblock %}
-
-        <div class="mt-5"></div>
-
-        {% block navbar_after %}{% endblock %}
-
-        {% block body_content %}
-            <div class="container">
-                {% block content %}{% endblock %}
-            </div>
-        {% endblock %}
+<div class="container">
+<div class="content">
+{% block content %}{% endblock %}
+  </div>
+</div>
 
         {% block foot %}
             <footer>

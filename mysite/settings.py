@@ -38,21 +38,21 @@ LDAP_AUTH_URL = "ldap://172.16.0.2"
 LDAP_AUTH_USE_TLS = False
 
 # The LDAP search base for looking up users.
-LDAP_AUTH_SEARCH_BASE = "DC=corp,DC=artek,DC=org"
+LDAP_AUTH_SEARCH_BASE = "OU=Artek,DC=corp,DC=artek,DC=org"
 
 # The LDAP class that represents a user.
-LDAP_AUTH_OBJECT_CLASS = "inetOrgPerson"
+LDAP_AUTH_OBJECT_CLASS = "top"
 
 # User model fields mapped to the LDAP
 # attributes that represent them.
 LDAP_AUTH_USER_FIELDS = {
     "username": "sAMAccountName",
-    "first_name": "PrincipalName",
+    "first_name": "givenName",
     "last_name": "sn",
     "email": "mail",
 }
 
-LDAP_AUTH_OBJECT_CLASS = "user"
+
 
 # A tuple of django model fields used to uniquely identify a user.
 LDAP_AUTH_USER_LOOKUP_FIELDS = ("username",)
@@ -76,10 +76,10 @@ LDAP_AUTH_FORMAT_SEARCH_FILTERS = "django_python3_ldap.utils.format_search_filte
 # Path to a callable that takes a dict of {model_field_name: value}, and returns
 # a string of the username to bind to the LDAP server.
 # Use this to support different types of LDAP server.
-LDAP_AUTH_FORMAT_USERNAME = "django_python3_ldap.utils.format_username_active_directory"
+LDAP_AUTH_FORMAT_USERNAME = "django_python3_ldap.utils.format_username_active_directory_principal"
 
 # Sets the login domain for Active Directory users.
-LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = None
+LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = "corp.artek.org"
 
 # The LDAP username and password of a user for querying the LDAP database for user
 # details. If None, then the authenticated user will be used for querying, and
