@@ -1,0 +1,9 @@
+{% extends 'print_trips.html' %}
+{% load bootstrap3 %}
+
+{% block title %}Мои поездки{% endblock %}
+
+{% block after_content %}
+<button class="btn btn-primary" onclick='window.location.href = "{% url 'create_trip' %}"'>Создать</button>
+
+{% endblock %}

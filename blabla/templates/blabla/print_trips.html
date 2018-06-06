@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load bootstrap3 %}
+
+{% block title %}print_trips_template{% endblock %}
+
+{% block content %}
+
+<table class="table table-striped table-hover">
+  <thead>
+    <tr>
+      <th class="col-md-1" scope="col">Время и дата отправления</th>
+      <th class="col-md-1" scope="col">Маршрут</th>
+      <th class="col-md-1" scope="col">Свободные места</th>
+    </tr>
+  </thead>
+  <tbody>
+  {% for trip in trips %}
+  <tr  onclick='window.location.href="{% url 'detail' trip.pk %}"'>
+    <th scope="row"> {{ trip.datetime }}</th>
+    <td> {{ trip.trip_from }} - {{ trip.trip_to}}</td>
+    <td> {{ trip.free_seats }}</td>
+  </tr>
+  {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

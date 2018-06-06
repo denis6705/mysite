@@ -41,8 +41,8 @@
   <div class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
       <li><a href="{% url 'home' %}">Домой</a></li>
-      <li><a href="#about">Мои поездки</a></li>
-      <li><a href="#about">Мои брони</a></li>
+      <li><a href="{% url 'my_trips' %}">Мои поездки</a></li>
+      <li><a href="{% url 'my_subscriptions' %}">Мои брони</a></li>
       <li><a href="{% url 'logout' %}">Выход</a></li>
     </ul>
   </div><!--/.nav-collapse -->
@@ -53,6 +53,11 @@
 <div class="container">
 <div class="content">
 {% block content %}{% endblock %}
+  </div>
+</div>
+<div class="container">
+<div class="content">
+{% block after_content %}{% endblock %}
   </div>
 </div>
 

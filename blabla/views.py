@@ -26,12 +26,13 @@ def detail(request,trip_id):
                                                'can_subscribe': can_subscribe,
                                                'subscribed': subscribed})
 #----------------------------------------------------------------------------------
-def my_trips(request, trip_id):
-  trips = Trip.objects.all(creator=request.user.id)
-  pass
+def my_trips(request):
+  trips = Trip.objects.all().filter(creator=request.user.id)
+  return render(request, 'blabla/my_trips.html',{'trips':trips})
 
 def my_subscriptions(request):
-  pass
+  trips = request.user.trip_set.all()
+  return render(request, 'blabla/my_subscriptions.html',{'trips':trips})
 
 def delete_trip(request, trip_id):
   t = Trip.objects.get(pk=trip_id)
@@ -44,14 +45,14 @@ def subscribe(request, trip_id):
     trip.users.add(request.user)
     trip.free_seats -= 1
     trip.save()
-    redirect('detail',trip_id)
+    return redirect('detail',trip_id)
 
 def unsubscribe(request, trip_id):
     trip = Trip.objects.get(pk=trip_id)
     trip.users.remove(request.user)
     trip.free_seats += 1
     trip.save()
-    redirect('detail', trip_id)
+    return redirect('detail', trip_id)
 
 
 def create_trip(request):

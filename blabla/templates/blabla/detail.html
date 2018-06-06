@@ -9,9 +9,9 @@
     {% bootstrap_form trip_form %}
   </form>
 {% if subscribed %}
-  <button class="btn" onclick='window.location.href = "{% url 'unsubscribe' trip_id %}"'>Отписатся</button>
+  <button class="btn btn-danger" onclick='window.location.href = "{% url 'unsubscribe' trip_id %}"'>Отменить бронирование</button>
 {% endif %}
 {% if can_subscribe %}
-  <p> Subscribe </p>
+  <button class="btn btn-success" onclick='window.location.href = "{% url 'subscribe' trip_id %}"'>Забронировать</button>
 {% endif %}
 {% endblock %}
