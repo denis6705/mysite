@@ -27,7 +27,7 @@ SECRET_KEY = 'q(_7xucj0y%9dd5oj&pb7usjyfkar74%jzr)!eg7v9i2vy#n6s'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['172.16.4.133','172.0.0.1','localhost','192.168.0.103']
+ALLOWED_HOSTS = ['172.16.4.133','172.0.0.1','localhost','192.168.0.103','blabla.corp.artek.org']
 #------------------------------------------------------------------------------------------------------------------------------------
 #----------------------------------------LDAP-CONFIGURATION--------------------------------------------------------------------------
 
@@ -162,11 +162,14 @@ LOGOUT_REDIRECT_URL = '/'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'djbase',
+        'USER': 'djadmin',
+        'PASSWORD': 'denis_denis',
+        'HOST': 'localhost',
+        'PORT': '5432',
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/2.0/ref/settings/#auth-password-validators

@@ -34,13 +34,11 @@
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
       <span class="icon-bar"></span>
-      <span class="icon-bar"></span>
     </button>
-    <a class="navbar-brand" href="#">Артек поездки</a>
+    <a class="navbar-brand" href="{% url 'home' %}">Артек поездки</a>
   </div>
   <div class="collapse navbar-collapse">
     <ul class="nav navbar-nav">
-      <li><a href="{% url 'home' %}">Домой</a></li>
       <li><a href="{% url 'my_trips' %}">Мои поездки</a></li>
       <li><a href="{% url 'my_subscriptions' %}">Мои брони</a></li>
       <li><a href="{% url 'logout' %}">Выход</a></li>
@@ -52,19 +50,15 @@
 
 <div class="container">
 <div class="content">
+{% block pre_content %}{% endblock %}
 {% block content %}{% endblock %}
-  </div>
-</div>
-<div class="container">
-<div class="content">
 {% block after_content %}{% endblock %}
   </div>
 </div>
 
-        {% block foot %}
-            <footer>
-            </footer>
-          {% endblock %}
+{% block foot %}
+  <footer></footer>
+{% endblock %}
     {% else %}
     <script type="text/javascript">
       window.location.href = "{% url 'login' %}";

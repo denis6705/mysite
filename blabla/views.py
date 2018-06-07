@@ -2,12 +2,13 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import  TripForm, DetailForm
 from .models import Trip
+from datetime import datetime as dt
 def index(request):
 
   return render(request,'blabla/index.html')
 
 def home(request):
-  trips = Trip.objects.all().order_by('datetime')
+  trips = Trip.objects.all().order_by('datetime').filter(datetime__gte=dt.now())
   return render(request, 'blabla/home.html',{'trips':trips})
 #-------------detail---------------------------------------------------------------
 def detail(request,trip_id):
