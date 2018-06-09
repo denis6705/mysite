@@ -8,7 +8,7 @@ def index(request):
   return render(request,'blabla/index.html')
 
 def home(request):
-  trips = Trip.objects.all().order_by('datetime').filter(datetime__gte=dt.now())
+  trips = Trip.objects.all().order_by('datetime')#.filter(datetime__gte=dt.now())
   return render(request, 'blabla/home.html',{'trips':trips})
 #-------------detail---------------------------------------------------------------
 def detail(request,trip_id):

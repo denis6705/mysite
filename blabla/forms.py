@@ -26,4 +26,5 @@ DetailForm = modelform_factory(Trip, exclude=('creator','users'),
                                         'trip_from': forms.DateTimeInput(attrs={'type':'button'}),
                                         'trip_to': forms.DateTimeInput(attrs={'type':'button'}),
                                         'car': forms.DateTimeInput(attrs={'type':'button'}),
+                                        'phone': forms.DateTimeInput(attrs={'type':'button'}),
                                        })
