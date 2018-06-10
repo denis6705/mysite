@@ -3,6 +3,13 @@
 
 {% block title %}Мои поездки{% endblock %}
 
+{% block pre_content %}
+<h1> Мои поездки </h1>
+{% if not trips %}
+  <h3> У вас пока нет созданных поездок </h3>
+{% endif %}
+{% endblock %}
+
 {% block after_content %}
 <button class="btn btn-primary" onclick='window.location.href = "{% url 'create_trip' %}"'>Создать</button>
 

@@ -1,4 +1,11 @@
 {% extends 'print_trips.html' %}
 {% load bootstrap3 %}
 
+
+{% block pre_content %}
+<h1> Мои брони </h1>
+{% if not trips %}
+  <h3> У вас пока нет забронированных поездок </h3>
+{% endif %}
+{% endblock %}
 {% block title %}Мои брони{% endblock %}
