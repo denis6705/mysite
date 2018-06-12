@@ -6,7 +6,8 @@
 
   <form class="form">
     {% csrf_token %}
-    {% bootstrap_form trip_form %}
+    {% bootstrap_form trip_form exclude='phone' %}
+    {% bootstrap_field trip_form.phone label=creator_name %}
   </form>
 {% if subscribed %}
   <button class="btn btn-danger" onclick='window.location.href = "{% url 'unsubscribe' trip_id %}"'>Отменить бронирование</button>

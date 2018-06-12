@@ -9,7 +9,7 @@ class Trip(models.Model):
   free_seats = models.PositiveIntegerField("Свободные места:")
   car = models.CharField("Машина:",max_length=30)
   users = models.ManyToManyField(User,blank=True)
-  phone = models.CharField("Номер телефона",default="+7",max_length=15, blank=True)
+  phone = models.CharField("Номер телефона",default="+7",max_length=16, blank=True)
 
   def __str__(self):
     return "%s - %s" % (self.trip_from, self.trip_to,)

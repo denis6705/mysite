@@ -2,13 +2,14 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import authenticate, login, logout
 from .forms import  TripForm, DetailForm
 from .models import Trip
+from django.contrib.auth.models import User
 from datetime import datetime as dt
 def index(request):
 
   return render(request,'blabla/index.html')
 
 def home(request):
-  trips = Trip.objects.all().order_by('datetime')#.filter(datetime__gte=dt.now())
+  trips = Trip.objects.all().order_by('datetime').filter(datetime__gte=dt.now())
   return render(request, 'blabla/home.html',{'trips':trips})
 #-------------detail---------------------------------------------------------------
 def detail(request,trip_id):
@@ -21,9 +22,10 @@ def detail(request,trip_id):
       can_subscribe = True
   else:
       can_subscribe = False
-
+  creator_name = User.objects.get(pk=trip.creator).first_name + ", Номер телефона:"
   return render(request, 'blabla/detail.html',{'trip_form':trip_form,
                                                'trip_id':trip_id,
+                                               'creator_name': creator_name,
                                                'can_subscribe': can_subscribe,
                                                'subscribed': subscribed})
 #----------------------------------------------------------------------------------
