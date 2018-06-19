@@ -27,7 +27,8 @@ def detail(request,trip_id):
                                                'trip_id':trip_id,
                                                'creator_name': creator_name,
                                                'can_subscribe': can_subscribe,
-                                               'subscribed': subscribed})
+                                               'subscribed': subscribed
+                                               })
 #----------------------------------------------------------------------------------
 def my_trips(request):
   trips = Trip.objects.all().filter(creator=request.user.id)
@@ -74,7 +75,8 @@ def edit_trip(request, trip_id):
   if request.method == 'GET':
     trip = Trip.objects.get(pk=trip_id)
     trip_form = TripForm(instance=trip)
-    return render(request, 'blabla/edit.html', {'trip_form':trip_form, 'trip_id':trip_id})
+    users = trip.users.all()
+    return render(request, 'blabla/edit.html', {'trip_form':trip_form, 'trip_id':trip_id, 'users':users})
   elif request.method == 'POST':
     new_trip_form = TripForm(request.POST)
     if new_trip_form.is_valid():
