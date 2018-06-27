@@ -48,7 +48,13 @@
       <li><a href="{% url 'my_subscriptions' %}">Мои брони</a></li>
       <li class="btn-group"  sytyle="margin-right: 100px;">
         <a  href="{% url 'logout' %}" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Вы вошли как:  {{ user.first_name }} <span class="caret"></span>
+          Вы вошли как:
+          {% if user.first_name %}
+            {{ user.first_name }}
+          {% else %}
+            {{ user.username }}
+          {% endif %}
+          <span class="caret"></span>
         </button>
         <ul class="dropdown-menu">
           <li><a href="{% url 'logout' %}">Выход</a></li>
