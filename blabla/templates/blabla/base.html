@@ -46,7 +46,14 @@
     <ul class="nav navbar-nav">
       <li><a href="{% url 'my_trips' %}">Мои поездки</a></li>
       <li><a href="{% url 'my_subscriptions' %}">Мои брони</a></li>
-      <li><a  sytyle="margin-right: 100px;" href="{% url 'logout' %}">Выход</a></li>
+      <li class="btn-group"  sytyle="margin-right: 100px;">
+        <a  href="{% url 'logout' %}" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          Вы вошли как:  {{ user.first_name }} <span class="caret"></span>
+        </button>
+        <ul class="dropdown-menu">
+          <li><a href="{% url 'logout' %}">Выход</a></li>
+        </ul>
+     </li>
     </ul>
   </div><!--/.nav-collapse -->
 </div>
