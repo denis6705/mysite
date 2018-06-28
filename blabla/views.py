@@ -22,7 +22,11 @@ def detail(request,trip_id):
       can_subscribe = True
   else:
       can_subscribe = False
-  creator_name = User.objects.get(pk=trip.creator).first_name + ", Номер телефона:"
+  #creator_name = User.objects.get(pk=trip.creator).first_name + ", Номер телефона:"
+  creator_name = User.objects.get(pk=trip.creator).first_name
+  if not creator_name:
+      creator_name = User.objects.get(pk=trip.creator).username
+  creator_name += ", Номер телефона:"
   return render(request, 'blabla/detail.html',{'trip_form':trip_form,
                                                'trip_id':trip_id,
                                                'creator_name': creator_name,
