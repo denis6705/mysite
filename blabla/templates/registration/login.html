@@ -12,16 +12,12 @@
   {% bootstrap_javascript %}
   {% bootstrap_messages %}
 </head>
-
 <body>
-  <script type="text/javascript">
-      for (var it in $.cookie()) $.removeCookie(it);
-  </script>
   <div class="container">
     {% block content %}
       <h2>Вход</h2>
 <form method="post">
-      {% csrf_token %}
+    {% csrf_token %}
     {% bootstrap_form form %}
     {% buttons %}
         <button type="submit" class="btn btn-primary">

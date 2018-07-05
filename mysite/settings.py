@@ -25,7 +25,7 @@ AUTHENTICATION_BACKENDS = ["django_python3_ldap.auth.LDAPBackend",
 SECRET_KEY = 'q(_7xucj0y%9dd5oj&pb7usjyfkar74%jzr)!eg7v9i2vy#n6s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['172.16.4.133','172.0.0.1','localhost','192.168.0.103','blabla.corp.artek.org','178.34.154.131','go.artek.org']
 #------------------------------------------------------------------------------------------------------------------------------------
