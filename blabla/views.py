@@ -1,4 +1,5 @@
 from django.shortcuts import render, redirect
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth import authenticate, login, logout
 from .forms import  TripForm, DetailForm
 from .models import Trip
@@ -7,11 +8,12 @@ from datetime import datetime as dt
 def index(request):
 
   return render(request,'blabla/index.html')
-
+@login_required
 def home(request):
   trips = Trip.objects.all().order_by('datetime').filter(datetime__gte=dt.now())
   return render(request, 'blabla/home.html',{'trips':trips})
 #-------------detail---------------------------------------------------------------
+@login_required
 def detail(request,trip_id):
   trip = Trip.objects.get(pk=trip_id)
   if trip.creator == request.user.id:
@@ -34,10 +36,12 @@ def detail(request,trip_id):
                                                'subscribed': subscribed
                                                })
 #----------------------------------------------------------------------------------
+@login_required
 def my_trips(request):
   trips = Trip.objects.all().filter(creator=request.user.id)
   return render(request, 'blabla/my_trips.html',{'trips':trips})
-
+  
+@login_required
 def my_subscriptions(request):
   trips = request.user.trip_set.all()
   return render(request, 'blabla/my_subscriptions.html',{'trips':trips})
@@ -47,14 +51,14 @@ def delete_trip(request, trip_id):
   if t.creator == request.user.id:
     t.delete()
   return redirect('home')
-
+@login_required
 def subscribe(request, trip_id):
     trip = Trip.objects.get(pk=trip_id)
     trip.users.add(request.user)
     trip.free_seats -= 1
     trip.save()
     return redirect('detail',trip_id)
-
+@login_required
 def unsubscribe(request, trip_id):
     trip = Trip.objects.get(pk=trip_id)
     trip.users.remove(request.user)
@@ -62,7 +66,7 @@ def unsubscribe(request, trip_id):
     trip.save()
     return redirect('detail', trip_id)
 
-
+@login_required
 def create_trip(request):
   if request.method == 'GET':
     trip_form = TripForm()
@@ -74,7 +78,7 @@ def create_trip(request):
       model.creator = request.user.id
       model.save()
     return redirect('home')
-
+@login_required
 def edit_trip(request, trip_id):
   if request.method == 'GET':
     trip = Trip.objects.get(pk=trip_id)

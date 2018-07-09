@@ -26,7 +26,6 @@
   {% endblock %}
   {% block body %}
   <body>
-   {% if user.is_authenticated %}
 {% block nav %}
 <div class="navbar navbar-inverse navbar-static-top" role="navigation">
 <div class="container">
@@ -77,11 +76,6 @@
 {% block foot %}
   <footer></footer>
 {% endblock %}
-    {% else %}
-    <script type="text/javascript">
-      window.location.href = "{% url 'login' %}";
-  </script>
-  {% endif %}
   </body>
   {% endblock %}
 </html>
