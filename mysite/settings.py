@@ -84,7 +84,7 @@ LDAP_AUTH_ACTIVE_DIRECTORY_DOMAIN = "corp.artek.org"
 # The LDAP username and password of a user for querying the LDAP database for user
 # details. If None, then the authenticated user will be used for querying, and
 # the `ldap_sync_users` command will perform an anonymous query.
-LDAP_AUTH_CONNECTION_USERNAME = "Admin"
+LDAP_AUTH_CONNECTION_USERNAME = "admin"
 LDAP_AUTH_CONNECTION_PASSWORD = "Ckj;ysqGfcc4321"
 
 # Set connection/receive timeouts (in seconds) on the underlying `ldap3` library.
